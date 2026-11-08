@@ -1,0 +1,10 @@
+{
+  "name": "G CHESS",
+  "short_name": "GChess",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#0d0d0f",
+  "theme_color": "#d4af37",
+  "description": "Premium chess experience with AI, missions, economy, and Firebase-ready architecture.",
+  "icons": []
+}

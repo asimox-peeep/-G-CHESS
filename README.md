@@ -1,50 +1,25 @@
 # G CHESS
 
-G CHESS is a mobile-friendly premium chess web app designed for GitHub Pages deployment. It includes a playable classic chess board, AI difficulty levels, profile and economy screens, missions, shop, rewards, settings, and offline support.
-
-## Features
-
-- Classic chess gameplay with legal move validation via chess.js
-- Human-vs-AI and local multiplayer modes
-- Adjustable AI difficulty levels
-- Premium black-and-gold UI with multiple themes
-- Responsive board and mobile-first layout
-- Stars economy, shop, missions, daily rewards, and mystery boxes
-- Firebase-ready setup with config guard and security rule examples
-- Offline support via service worker
+G Chess is a responsive, GitHub Pages-compatible chess web app. The current release focuses on a playable classic chess game against a local AI or a second local player. The game uses chess.js for legal move generation and standard rules (including castling, en passant, promotion, check, and draw/checkmate detection).
 
 ## Run locally
-
-Because this project is static HTML/CSS/JS, the simplest local launch is:
 
 ```bash
 python3 -m http.server 8000
 ```
 
-Then open:
+Open <http://localhost:8000>. The rules library is currently loaded from a public CDN, so the first page load requires internet access. Once the app assets and library have been loaded, browser caching may support repeat offline use; a complete offline engine bundle is not included yet.
 
-```text
-http://localhost:8000/
-```
+## Deploy to GitHub Pages
 
-## GitHub Pages
+In repository Settings → Pages, select the `main` branch and `/ (root)` as the publishing source. The site entry point is `index.html`.
 
-Push this repository to GitHub and enable Pages from the default branch root folder.
+## Current scope
 
-## Firebase note
+Implemented: classic chess, legal move highlighting, move history, player color selection, local two-player, adjustable heuristic AI, undo, hint, resignation, board orientation, light/dark theme, and device-local game statistics.
 
-The frontend includes Firebase hooks but will only activate when a valid Firebase configuration is supplied in `js/firebase.js`. This avoids hardcoding secrets in frontend files.
+Not yet implemented: chess variants, Stockfish analysis, Firebase authentication/cloud sync, secure server-side economy, shop, missions/rewards, leaderboards, and seasonal events. The navigation labels for those areas currently explain their status; they do not simulate backend functionality or award Stars. Firebase remains inactive until a real project is configured.
 
-## Project structure
+## Firebase security
 
-```text
-/index.html
-/css/style.css
-/js/app.js
-/js/chess-engine.js
-/js/firebase.js
-/firebase/firestore.rules
-/manifest.json
-/service-worker.js
-/README.md
-```
+Never put Firebase Admin credentials in frontend files. Configure client Firebase settings only for public client initialization, deploy Cloud Functions for sensitive operations, and use restrictive Firestore rules before enabling accounts or economy features.

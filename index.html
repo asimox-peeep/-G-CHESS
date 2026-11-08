@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#d4af37">
+  <meta name="description" content="Play chess against AI or a friend in G Chess.">
+  <title>G Chess — Play Chess</title>
+  <link rel="manifest" href="./manifest.json">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <nav class="navbar" aria-label="Main navigation">
+        <a class="brand" href="#home" aria-label="G Chess home"><span class="brand-mark">♞</span><span>G CHESS</span></a>
+        <div class="nav-tabs" id="navTabs"></div>
+        <div class="user-chip"><span class="avatar">G</span><span>Guest player</span></div>
+      </nav>
+    </header>
+
+    <main>
+      <section id="home" class="section active">
+        <div class="hero-grid">
+          <article class="panel hero-card">
+            <p class="eyebrow">THINK. PLAN. WIN.</p>
+            <h1>Your next move<br><span class="gold-text">starts here.</span></h1>
+            <p>Play a complete game of chess against the computer or challenge someone beside you.</p>
+            <div class="inline-actions"><button class="btn primary" data-go="play">Play chess</button><button class="btn secondary" data-go="play" data-new-game="true">New game</button></div>
+          </article>
+          <article class="panel top-metrics"><h2>Your local stats</h2><p class="small-muted">Saved in this browser on this device.</p><div id="heroStats" class="metric-list"></div></article>
+        </div>
+        <article class="panel card"><h2>Getting started</h2><p class="small-muted">Choose a side and AI level in Play. Click a piece to see its legal moves, then choose a highlighted square. Castling, en passant, promotion, check, and checkmate follow standard chess rules.</p></article>
+      </section>
+
+      <section id="play" class="section">
+        <div class="section-heading"><div><p class="eyebrow">CLASSIC CHESS</p><h1>Play</h1></div><div class="status-pill" id="statusLabel" aria-live="polite">White to move</div></div>
+        <div id="play-board-panel">
+          <article class="panel board-wrap">
+            <div class="player-strip"><div><span class="player-dot white-dot"></span><strong id="topPlayerLabel">Computer</strong></div><span class="small-muted" id="topClockLabel">Black</span></div>
+            <div id="chess-board" class="chess-board" role="grid" aria-label="Chess board"></div>
+            <div class="player-strip"><div><span class="player-dot gold-dot"></span><strong id="bottomPlayerLabel">You</strong></div><span class="small-muted" id="bottomClockLabel">White</span></div>
+          </article>
+          <aside class="board-side">
+            <section class="panel card control-stack">
+              <h2>Game setup</h2>
+              <label for="modeSelect">Opponent</label><select id="modeSelect" class="select"><option value="ai">Play against AI</option><option value="local">Local two-player</option></select>
+              <label for="colorSelect">Play as</label><select id="colorSelect" class="select"><option value="white">White</option><option value="black">Black</option></select>
+              <label for="difficultySelect">AI strength</label><select id="difficultySelect" class="select"><option value="1">1 · Beginner</option><option value="2">2 · Very easy</option><option value="3">3 · Easy</option><option value="4">4 · Normal</option><option value="5" selected>5 · Intermediate</option><option value="6">6 · Advanced</option><option value="7">7 · Hard</option><option value="8">8 · Expert</option><option value="9">9 · Master</option><option value="10">10 · Grandmaster</option></select>
+              <div class="button-row"><button id="restartBtn" class="btn primary">New game</button><button id="undoBtn" class="btn secondary">Undo</button></div>
+              <div class="button-row"><button id="hintBtn" class="btn ghost">Hint</button><button id="resignBtn" class="btn ghost">Resign</button></div>
+              <p id="gameMessage" class="small-muted" aria-live="polite">Select a piece to see legal moves.</p>
+            </section>
+            <section class="panel history-box"><h2>Moves</h2><div id="moveHistory" class="move-list"><span class="small-muted">No moves yet</span></div></section>
+          </aside>
+        </div>
+      </section>
+
+      <section id="challenges" class="section"><div class="section-heading"><div><p class="eyebrow">COMING IN FUTURE UPDATES</p><h1>Challenges</h1></div></div><article class="panel card"><h2>Classic chess first</h2><p class="small-muted">This first playable release focuses on a complete classic chess game. Variants and puzzle challenges are not available yet.</p></article></section>
+      <section id="shop" class="section"><div class="section-heading"><div><p class="eyebrow">CUSTOMIZATION</p><h1>Shop</h1></div></div><article class="panel card"><h2>Shop is not active yet</h2><p class="small-muted">No Stars or purchases are enabled in this release. Currency and purchases will only be added with secure server-side validation.</p></article></section>
+      <section id="collection" class="section"><div class="section-heading"><div><p class="eyebrow">YOUR ITEMS</p><h1>Collection</h1></div></div><article class="panel card"><p class="small-muted">Cosmetic collection is not available yet.</p></article></section>
+      <section id="missions" class="section"><div class="section-heading"><div><p class="eyebrow">PLAY AND IMPROVE</p><h1>Missions</h1></div></div><article class="panel card"><p class="small-muted">Missions and rewards are not available yet; no rewards are granted by this prototype.</p></article></section>
+      <section id="leaderboard" class="section"><div class="section-heading"><div><p class="eyebrow">GLOBAL RANKINGS</p><h1>Leaderboard</h1></div></div><article class="panel card"><p class="small-muted">Online rankings require a configured backend and are not available yet.</p></article></section>
+      <section id="profile" class="section"><div class="section-heading"><div><p class="eyebrow">LOCAL PLAYER</p><h1>Profile</h1></div></div><article class="panel card"><h2>Guest profile</h2><p class="small-muted">This game currently stores match statistics locally in this browser. Sign-in and cloud sync are not configured.</p><div id="profileCard"></div></article></section>
+      <section id="settings" class="section"><div class="section-heading"><div><p class="eyebrow">PREFERENCES</p><h1>Settings</h1></div></div><article class="panel card control-stack"><label for="themeSelect">Theme</label><select id="themeSelect" class="select"><option value="dark">Dark gold</option><option value="light">Light</option></select><label for="orientationSelect">Board orientation</label><select id="orientationSelect" class="select"><option value="white">White at bottom</option><option value="black">Black at bottom</option></select></article></section>
+    </main>
+    <footer class="footer small-muted">G Chess · Classic chess MVP · Game and statistics stay on this device.</footer>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="./js/chess-engine.js"></script>
+  <script src="./js/firebase.js"></script>
+  <script src="./js/app.js"></script>
+</body>
+</html>
